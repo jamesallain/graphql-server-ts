@@ -1,5 +1,7 @@
 #SWAPI Apollo Server Wrapper
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jamesallain/graphql-server-ts.svg)](https://greenkeeper.io/)
+
 A wrapper around [SWAPI](http://swapi.co) built using Apollo Server.  This is intended to be a POC of an express and HAPI GraphQL server.
 
 Uses:
