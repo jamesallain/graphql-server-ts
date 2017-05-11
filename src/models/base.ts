@@ -8,6 +8,7 @@ export default class BaseModel {
   }
 
   public getConnections(urls: Array<string>) {
+    console.log(urls)
     return this.connector.loader.loadMany(urls)
   }
   public getConnection(url: string) {

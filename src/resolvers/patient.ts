@@ -1,4 +1,10 @@
-const id = (patient) => patient.url
+const id = (patient) => 1
+const hi = () => 'hi'
+const gender = (patient) => { console.log(patient) }
+//const telecom = (patient,_,context) => console.log(context)
+const address = (patient) => { return patient.address.map((pat) => { return pat }) }
+
+//const id = (patient) => patient.url
 //const patientID = (patient) => patient.id
 // const openingCrawl = (patient) => patient.opening_crawl
 // const releaseDate = (patient) => patient.release_date
@@ -11,6 +17,8 @@ const id = (patient) => patient.url
 export default {
   Patient: {
     id,
+    hi,
+    address
    // patientID,
     // openingCrawl,
     // releaseDate,

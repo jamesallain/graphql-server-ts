@@ -1,14 +1,14 @@
 export default `
 
 type Patient implements Node {
-  identifier: [String]
+  identifier: [Identifier]
   active: Boolean
   name: [String]
-  telecom: [String]
+  telecom: [ContactPoint]
   gender: String
   birthDate: String
   decreased: Boolean
-  address: [String]
+  address: [Address]
   maritalStatus: [String]
   multipleBirht: Int
   photo: String
@@ -19,5 +19,8 @@ type Patient implements Node {
   managingOrganization: [String]
   link: [String]
   id: ID!
+  hi: String
 }
 `
+
+//  id: ID!

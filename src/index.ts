@@ -12,9 +12,15 @@ import SpeciesModel from './models/species'
 import PatientModel from './models/patients'
 
 import { startExpress } from './express'
+//$ curl "https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB"
+//$ curl https://sb-fhir-dstu2.smarthealthit.org/api/smartdstu2/open/Patient/SMART-1551992 \
+//https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/'
+//https://sb-fhir-dstu2.smarthealthit.org/api/smartdstu2/open/
+//http://nprogram.azurewebsites.net/Patient/1?_format=json
+const BASE_URL = 'http://nprogram.azurewebsites.net'
 
 
-const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://fhirtest.uhn.ca/baseDstu2'
+const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : BASE_URL
 //const apiHost = process.env.API_HOST ? `${process.env.API_HOST}/api` : 'http://swapi.co/api'
 
 
@@ -33,7 +39,7 @@ function graphqlOptions() {
           planet: new PlanetModel(swapiConnector),
           starship: new StarshipModel(swapiConnector),
           species: new SpeciesModel(swapiConnector),
-          patients: new PatientModel(swapiConnector),
+          patient: new PatientModel(swapiConnector),
 
       },
   }

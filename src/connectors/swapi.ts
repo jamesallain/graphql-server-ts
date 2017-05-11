@@ -3,9 +3,14 @@ import * as request from 'request'
 const DataLoader = require('dataloader')
 
 export default class SWAPIConnector {
+//$.ajax({ url: 'foo/bar', headers: { 'x-some-other-header': 'some value' } });
+ // private headers = { 'Content-Type': 'application/json' };
+ // public url_all = {};
+ //http://nprogram.azurewebsites.net/Patient/1?_format=json
+
+
   public loader
   private rootURL: string
-
   constructor(rootURL: string) {
     this.rootURL = rootURL
     this.loader = new DataLoader((urls) => {
@@ -17,12 +22,16 @@ export default class SWAPIConnector {
   }
 
   public fetch(resource: string) {
-    const url = resource.indexOf(this.rootURL) === 0 ? resource : this.rootURL + resource
-
+    console.log(resource)
+    let url = resource.indexOf(this.rootURL) === 0 ? resource : this.rootURL + resource
+    url = url + '?_format=json';
+    //const url_all = { 'method': 'GET', 'url': url + '?_format=json',  headers: { 'Content-Type': 'application/json' } }
     return new Promise<any>((resolve, reject) => {
       console.log(`fetch: ${url}`)
       request.get(url, (err, resp, body) => {
         console.log(`fetch: ${url} completed`)
+        console.log("resp:",resp)
+        console.log("body:",body)
         err ? reject(err) : resolve(JSON.parse(body))
       })
     })
@@ -32,11 +41,13 @@ export default class SWAPIConnector {
     let results = []
     let index = 0
     const size = limit || 0
+    console.log(resource)
 
     function pagination(pageURL: string) {
       return new Promise<any>((resolve, reject) => {
         this.fetch(pageURL).then((data) => {
           // fast forward until offset is reached
+          console.log(data)
           if (offset && results.length === 0) {
             if (index + data.results.length > offset) {
               results = data.results.slice(offset - index)
